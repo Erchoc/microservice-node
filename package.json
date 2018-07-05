@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "moleculer-runner --repl --hot services",
     "start": "moleculer-runner",
-    "lint": "eslint services",
+    "lint": "eslint .",
     "lint:fix": "eslint --fix services"
   },
   "keywords": [

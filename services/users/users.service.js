@@ -103,10 +103,10 @@ module.exports = {
         console.log(data.then()
           .then( data => {
             console.log('string test success');
-            console.log(data.toString());
+            console.log(data);
           })
           .catch( err => {
-            console.log('err');
+            console.log(err);
           })
         );
       }
