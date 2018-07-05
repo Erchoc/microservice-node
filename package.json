@@ -6,7 +6,7 @@
     "dev": "moleculer-runner --repl --hot services",
     "start": "moleculer-runner",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix services"
+    "lint:fix": "eslint --fix ."
   },
   "keywords": [
     "microservices",
