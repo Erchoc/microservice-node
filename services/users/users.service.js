@@ -7,7 +7,6 @@
  
  **/
 
-'use strict';
 const nzd = require('node-zookeeper-dubbo');
 
 
@@ -51,68 +50,80 @@ module.exports = {
    * Actions
    */
   actions: {
-    
+  
     list: {
-      params: {
-      
-      },
+      params: {},
       handler (ctx) {
-      
+        let data = Dubbo.IUserService.findUser(1);
+        const r = data.then()
+          .then( data => {
+            console.log(data);
+          })
+          .catch( err => err );
+        return r;
       }
     },
-    
+  
     create: {
-      params: {
-      
-      },
+      params: {},
       handler (ctx) {
-				
-				
+      
+      
         return `创建用户${res}`;
       }
     },
-    
+  
     remove: {
-      params: {
-      
-      },
+      params: {},
       handler (ctx) {
         return `删除用户${data}`;
       }
     },
-    
+  
     update: {
-      params: {
-      
-      },
+      params: {},
       handler (ctx) {
         const name = ctx.params.name;
         const sex = ctx.params.sex;
-        
+      
         return `${name}替换用户${sex}`;
       }
     },
-    
+  
     get: {
       params: {
-      
+
       },
       handler (ctx) {
-        let data = Dubbo.IUserService.fin0dUser(1);
-    
-        console.log(data.then()
-          .then( data => {
-            console.log('string test success');
-            console.log(data);
-          })
+        // 测试对接前端Vue
+        /*
+        const data = userMock.get();
+        return {'code': 0, 'msg': 'success', 'data': data};
+        */
+        
+        // 测试对接Dubbo
+        const id = 2;
+        // 工资传递字符串还有问题
+        let jsonObj = {'name': '杨雪晋', 'job': 'NodeJS', 'salary': 2500};
+        // let data = Dubbo.IUserService.fin0dUser(id);        // String     Success
+        // let data = Dubbo.IUserService.findUser(id);         // Object     Success
+        // let data = Dubbo.IUserService.getJsonUser(id);      // JSON       Success
+        // let data = Dubbo.IUserService.getUser(id);          // Int        ByYourSelf
+        let data = Dubbo.IUserService.insertUser(jsonObj);  // Void       1成功/0失败
+        
+        const res = data.then( data => {
+        
+          return data;
+        })
           .catch( err => {
-            console.log(err);
-          })
-        );
+            // TODO
+            return err;
+          });
+
+        return res;
       }
-    }
+    },
   },
-  
   /**
    * Events
    */

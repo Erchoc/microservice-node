@@ -6,7 +6,6 @@
  Description: Officially Provided API Gateway Service
  
  **/
-'use strict';
 
 const ApiGateway = require('moleculer-web');
 

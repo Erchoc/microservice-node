@@ -7,12 +7,7 @@
  
  **/
 
-/**
- * 功能： nzd与java同行的node模块
- * 作者： dpc
- * 日期： 2018/6/27.
- */
-//引入nzd配置
+// 引入nzd配置
 const nzd_config = require('../../conf/nzd_conf.js');
 
 const userServices_opt = {
@@ -27,14 +22,13 @@ const userServices_opt = {
       interface:'com.jzy.edu.exam.service.IUserService',
       timeout:6000,
       methodSignature: {
-        fin0dUser: (id) => [{
-          '$class': 'int',
-          '$': id
-        }],
-        getUser: (id) => [{
-          '$class': 'int',
-          '$': id
-        }]
+        insertUser: user => [
+          { $class: 'com.jzy.edu.exam.domain.User', $: user }
+        ],
+        fin0dUser: id => [{ $class: 'java.lang.Integer', $: id }],
+        getUser: id => [{ $class: 'java.lang.Integer', $: id }],
+        findUser: id => [{ $class: 'java.lang.Integer', $: id }],
+        getJsonUser: i => [{ $class: 'java.lang.Integer', $: i }]
       }
     },
   }
