@@ -20,6 +20,11 @@ module.exports = {
     routes: [{
       path: '/api',
       authorization: true,
+      bodyParsers: {
+        urlencoded: {
+          extended: true
+        }
+      },
       aliases: {
         // REST Entities List
 				

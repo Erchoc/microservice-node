@@ -54,6 +54,7 @@ module.exports = {
     list: {
       params: {},
       handler (ctx) {
+        
         let data = Dubbo.IUserService.findUser(1);
         const r = data.then()
           .then( data => {
@@ -67,8 +68,7 @@ module.exports = {
     create: {
       params: {},
       handler (ctx) {
-      
-      
+        const res = ctx.params.username;
         return `创建用户${res}`;
       }
     },
