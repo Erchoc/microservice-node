@@ -19,7 +19,8 @@ module.exports = {
     
     routes: [{
       path: '/api',
-      authorization: true,
+      // authorization: true,
+      // 拓展接收 POST 数据
       bodyParsers: {
         urlencoded: {
           extended: true
@@ -27,8 +28,9 @@ module.exports = {
       },
       aliases: {
         // REST Entities List
-				
+  
         'REST /users': 'users',
+        'REST /exams': 'exams',
         
         /*
         'POST /users': 'users.create',

@@ -18,11 +18,12 @@ const opt = nzd_config_user.userServices_opt;
 opt.java = require('js-to-java');
 
 // 定义dubbo对象并监听事件
-
-const Dubbo=new nzd(opt);
+/*
+const Dubbo = new nzd(opt);
 Dubbo.on('service: changed', (event) => {
   console.log(event);
 });
+*/
 
 module.exports = {
   name: 'users',
@@ -52,9 +53,16 @@ module.exports = {
   actions: {
   
     list: {
-      params: {},
+      params: {
+      
+      },
       handler (ctx) {
-        
+        // Mock.js
+        const data = userMock.list();
+        return {'code': 0, 'msg': 'success', 'data': data};
+
+        // Dubbo-ZooKeeper-Dubbo
+        /*
         let data = Dubbo.IUserService.findUser(1);
         const r = data.then()
           .then( data => {
@@ -62,31 +70,52 @@ module.exports = {
           })
           .catch( err => err );
         return r;
+        */
       }
     },
   
     create: {
       params: {},
       handler (ctx) {
-        const res = ctx.params.username;
-        return `创建用户${res}`;
+        // Mock.js
+        const data = userMock.create();
+        if (Object.keys(ctx.params).length == 0) {
+          return {'code': 0, 'msg': 'success', 'data': '参数不能为空'};
+        }
+        data.username = ctx.params.username;
+        return {'code': 0, 'msg': 'success', 'data': data};
+        
+        // Dubbo-ZooKeeper-Dubbo
+        
       }
     },
   
     remove: {
       params: {},
       handler (ctx) {
-        return `删除用户${data}`;
+        // Mock.js
+        const data = userMock.remove();
+        data.id = ctx.params.id;
+        return {'code': 0, 'msg': 'success', 'data': data};
+  
+        // Dubbo-ZooKeeper-Dubbo
+  
       }
     },
   
     update: {
       params: {},
       handler (ctx) {
-        const name = ctx.params.name;
-        const sex = ctx.params.sex;
-      
-        return `${name}替换用户${sex}`;
+        // Mock.js
+        const data = userMock.update();
+        if (Object.keys(ctx.params).length == 0) {
+          return {'code': 0, 'msg': 'success', 'data': '参数不能为空'};
+        }
+        data.username = ctx.params.username;
+        return {'code': 0, 'msg': 'success', 'data': data};
+  
+        // Dubbo-ZooKeeper-Dubbo
+  
       }
     },
   
@@ -95,32 +124,31 @@ module.exports = {
 
       },
       handler (ctx) {
-        // 测试对接前端Vue
-        /*
-        const data = userMock.get();
+        // Mock.js
+        const data = userMock.create();
+        data.id = ctx.params.id;
         return {'code': 0, 'msg': 'success', 'data': data};
-        */
-        
-        // 测试对接Dubbo
+  
+        // Dubbo-ZooKeeper-Dubbo
+        /*
         const id = 2;
-        // 工资传递字符串还有问题
         let jsonObj = {'name': '杨雪晋', 'job': 'NodeJS', 'salary': 2500};
         // let data = Dubbo.IUserService.fin0dUser(id);        // String     Success
         // let data = Dubbo.IUserService.findUser(id);         // Object     Success
         // let data = Dubbo.IUserService.getJsonUser(id);      // JSON       Success
         // let data = Dubbo.IUserService.getUser(id);          // Int        ByYourSelf
+        
         let data = Dubbo.IUserService.insertUser(jsonObj);  // Void       1成功/0失败
-        
-        const res = data.then( data => {
-        
+        const res = data
+        .then( data => {
           return data;
         })
-          .catch( err => {
-            // TODO
-            return err;
-          });
-
+        .catch( err => {
+          // TODO
+          return err;
+        });
         return res;
+        */
       }
     },
   },

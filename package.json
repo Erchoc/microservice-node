@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "moleculer-runner --repl --hot services",
     "start": "moleculer-runner",
+    "doc": "apidoc -i services/ -o doc/",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
@@ -14,10 +15,10 @@
   ],
   "author": "",
   "devDependencies": {
+    "eslint": "^5.1.0",
     "moleculer-repl": "^0.4.0"
   },
   "dependencies": {
-    "eslint": "^5.0.1",
     "ioredis": "^3.2.2",
     "js-to-java": "^2.6.0",
     "mockjs": "^1.0.1-beta3",
