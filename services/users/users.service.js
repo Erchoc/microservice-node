@@ -125,7 +125,7 @@ module.exports = {
       },
       handler (ctx) {
         // Mock.js
-        const data = userMock.create();
+        const data = userMock.get();
         data.id = ctx.params.id;
         return {'code': 0, 'msg': 'success', 'data': data};
   
