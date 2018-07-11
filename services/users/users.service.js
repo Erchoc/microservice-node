@@ -79,7 +79,7 @@ module.exports = {
       handler (ctx) {
         // Mock.js
         const data = userMock.create();
-        if (Object.keys(ctx.params).length == 0) {
+        if (Object.keys(ctx.params).length === 0) {
           return {'code': 0, 'msg': 'success', 'data': '参数不能为空'};
         }
         data.username = ctx.params.username;
@@ -108,7 +108,7 @@ module.exports = {
       handler (ctx) {
         // Mock.js
         const data = userMock.update();
-        if (Object.keys(ctx.params).length == 0) {
+        if (Object.keys(ctx.params).length === 0) {
           return {'code': 0, 'msg': 'success', 'data': '参数不能为空'};
         }
         data.username = ctx.params.username;
