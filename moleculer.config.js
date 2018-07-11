@@ -1,6 +1,6 @@
 module.exports = {
   namespace: 'Microservices',
-  nodeID: null,
+  nodeID: 'localhost',
 
   logger: true,
   logLevel: 'debug',
@@ -8,7 +8,7 @@ module.exports = {
   logObjectPrinter: null,
 	
   transporter: 'redis://localhost',
-  requestTimeout: 10 * 1000,
+  requestTimeout: 3 * 1000,
   requestRetry: 0,
   maxCallLevel: 100,
   heartbeatInterval: 5,
