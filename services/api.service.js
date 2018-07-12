@@ -30,7 +30,12 @@ module.exports = {
         // REST Entities List
   
         'REST /users': 'users',
-        'REST /exams': 'exams',
+  
+        'POST /exams/c': 'exams.create',
+        'GET /exams/r/:id': 'exams.remove',
+        'POST /exams/u/:id': 'exams.update',
+        'GET /exams/g/:id': 'exams.get',
+        'GET /exams/l': 'exams.list',
         
         /*
         'POST /users': 'users.create',
